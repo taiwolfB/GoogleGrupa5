@@ -1,4 +1,4 @@
-cnp = '500131336381'
+cnp = input()
 
 S = cnp[0]
 AA = cnp[1:3]

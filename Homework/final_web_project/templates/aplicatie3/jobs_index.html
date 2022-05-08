@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <a class="btn btn-success" href="{% url 'jobs:add' %}">Add a Job</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Title</th>
+                <th>Job type</th>
+                <th>Url</th>
+                <th>Description</th>
+                <th>How_to_apply</th>
+                <th>State</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in jobs_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ item.title }}</td>
+                    <td>{{ item.type }}</td>
+                    <td>
+                        {{ item.url }}
+                    </td>
+                    <td>
+                        {{item.description}}
+                    </td>
+                    <td>
+                        {{item.how_to_apply }}
+                    </td>
+                    <td>
+                        {% if item.active == 1 %}
+                            <span class="btn btn-info">Active</span>
+                        {% else %}
+                            <span class="btn btn-info">Inactive</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="btn btn-success" href="{% url 'jobs:update' item.id %}">Update</a>
+                        {% if item.active == 1 %}
+                        <a class="btn btn-danger" href="{% url 'jobs:delete' item.id %}">Delete</a>
+                        {% else %}
+                        <a class="btn btn-info" href="{% url 'jobs:activate' item.id %}">Activate</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

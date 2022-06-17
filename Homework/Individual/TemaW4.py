@@ -33,3 +33,8 @@ df = pd.DataFrame(dataset, columns = header)
 df.to_csv("ChessChampionships.csv", header = header)
 
 
+
+
+
+
+
